@@ -6,4 +6,11 @@ export default defineConfig({
 	server: {
 		host: 'tls-deploy.lo.shynome.com',
 	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				quietDeps: true,
+			},
+		},
+	},
 })
