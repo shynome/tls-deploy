@@ -8,7 +8,7 @@ import { pairFromCookies, type AccessKeyPair } from './types'
 import type { Cookies } from '@sveltejs/kit'
 
 // @ts-ignore
-const cdn20180510: typeof cdn20180510All = cdn20180510All.default
+const cdn20180510: typeof cdn20180510All = cdn20180510All?.default ?? cdn20180510All
 
 export class Client {
 	#client: cdn20180510All
