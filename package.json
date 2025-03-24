@@ -11,7 +11,9 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
-		"lint": "prettier --check ."
+		"lint": "prettier --check .",
+		"docker": "docker build . -t shynome/tls-deploy:$(git describe --tags --always --dirty)",
+		"predocker": "npm run build"
 	},
 	"devDependencies": {
 		"@alicloud/cas20200407": "3.0.0",
