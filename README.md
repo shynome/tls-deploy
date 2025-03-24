@@ -1,38 +1,25 @@
-# sv
+# 一键部署阿里云域名证书
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+如果用阿里云的[云产品部署](https://yundun.console.aliyun.com/?p=cas#/deployuser/user)证书, 每部署一个产品就要收30块钱, 真的阿里云怎么不去抢呢?
 
-## Creating a project
+所以我编写了这个工具, 方便快捷的部署自己所拥有的证书
 
-If you're seeing this, you've probably already done this step. Congrats!
+安全从来不是可选项, 而阿里云这种提高安全成本的手段正在摧毁安全
 
-```bash
-# create a new project in the current directory
-npx sv create
+# 使用
 
-# create a new project in my-app
-npx sv create my-app
+首先[去阿里云创建要用到的 AccessKey](https://ram.console.aliyun.com/users)
+
+该 `AccessKey` 需要下列权限
+
+- 只读访问云盾证书服务的权限
+- 管理全站加速（DCDN）的权限
+- 管理CDN的权限
+
+接着运行此工具
+
+```sh
+docker run --rm -ti --net host -e ORIGIN=http://127.0.0.1:3000 shynome/tls-deploy:v0.0.3
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+然后就是打开浏览器: http://127.0.0.1:3000 , 登录后部署自己所拥有的证书
