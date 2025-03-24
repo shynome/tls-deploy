@@ -6,4 +6,7 @@ export function load({ cookies }) {
 	if (!id || !secret) {
 		redirect(303, '/login')
 	}
+	return {
+		ak_id: id,
+	}
 }

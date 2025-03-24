@@ -21,7 +21,7 @@ export const actions = {
 				httpOnly: true,
 				secure: url.protocol === 'https:',
 			}
-			const resp = await client.listCsr()
+			const resp = await client.listCert()
 			cookies.set('ak_id', data.ak_id, opts)
 			cookies.set('ak_secret', data.ak_secret, opts)
 		} catch (err) {
