@@ -4,7 +4,7 @@ import type { Actions } from './$types'
 import { Client } from '$lib/aliyun/cas'
 
 export const actions = {
-	default: async ({ request, cookies }) => {
+	default: async ({ request, cookies, url }) => {
 		const form = await request.formData()
 		let data = {
 			ak_id: form.get('ak_id')! as string,
@@ -16,9 +16,14 @@ export const actions = {
 			accessKeySecret: data.ak_secret,
 		})
 		try {
+			let opts = {
+				path: '/',
+				httpOnly: true,
+				secure: url.protocol === 'https:',
+			}
 			const resp = await client.listCsr()
-			cookies.set('ak_id', data.ak_id, { path: '/', httpOnly: true, secure: false })
-			cookies.set('ak_secret', data.ak_secret, { path: '/', httpOnly: true, secure: false })
+			cookies.set('ak_id', data.ak_id, opts)
+			cookies.set('ak_secret', data.ak_secret, opts)
 		} catch (err) {
 			data.msg = `登录失败. 错误原因: ${err}`
 			fail(400, data)
