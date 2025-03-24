@@ -26,7 +26,7 @@ export const actions = {
 			cookies.set('ak_secret', data.ak_secret, opts)
 		} catch (err) {
 			data.msg = `登录失败. 错误原因: ${err}`
-			fail(400, data)
+			return fail(400, data)
 		}
 		redirect(303, '/')
 	},
