@@ -116,7 +116,7 @@
 							{:else if result.success}
 								部署成功
 							{:else}
-								<span use:tooltip title={result.msg}>部署失败</span>
+								<span class="text-danger" use:tooltip title={result.msg}>部署失败</span>
 							{/if}
 						</td>
 					{/if}
